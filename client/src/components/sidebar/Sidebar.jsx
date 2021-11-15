@@ -22,7 +22,8 @@ export default function Sidebar() {
           alt=""
         />
         <p>
-          Laboris sunt aut
+          I am a JavaScript enthusiast. Worked extensively on react and react-native.
+          I am passionate about solving problems and loves to work with the latest technologies.
         </p>
       </div>
       <div className="sidebarItem">
