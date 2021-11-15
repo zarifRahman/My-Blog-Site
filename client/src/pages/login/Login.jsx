@@ -10,6 +10,7 @@ export default function Login() {
   const passwordRef = useRef();
   const { dispatch, isFetching, user } = useContext(Context);
 
+  // api request so use async await
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch({ type: "LOGIN_START" });
@@ -24,7 +25,6 @@ export default function Login() {
     }
 
   }
-  console.log(user, "user");
   return (
     <div className="login">
       <span className="loginTitle">Login</span>
