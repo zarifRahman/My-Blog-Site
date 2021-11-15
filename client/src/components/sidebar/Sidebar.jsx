@@ -22,8 +22,7 @@ export default function Sidebar() {
           alt=""
         />
         <p>
-          Laboris sunt aute cupidatat velit magna velit ullamco dolore mollit
-          amet ex esse.Sunt eu ut nostrud id quis proident.
+          Laboris sunt aut
         </p>
       </div>
       <div className="sidebarItem">
