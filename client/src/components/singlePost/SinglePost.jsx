@@ -46,7 +46,9 @@ export default function SinglePost() {
         desc,
       });
       setUpdateMode(false)
-    } catch (err) { }
+    } catch (err) {
+      console.error(err)
+    }
   };
   return (
     <div className="singlePost">
