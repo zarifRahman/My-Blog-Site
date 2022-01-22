@@ -8,13 +8,15 @@ import { Context } from "../../context/Context";
 export default function Login() {
   const userRef = useRef();
   const passwordRef = useRef();
-  const { dispatch, isFetching, user } = useContext(Context);
+  const { dispatch, isFetching, user, error } = useContext(Context);
 
   // api request so use async await
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch({ type: "LOGIN_START" });
     try {
+      // the api will give us a response
+      // we will save that data using dispatch
       const res = await axios.post("/auth/login", {
         username: userRef.current.value,
         password: passwordRef.current.value
@@ -43,6 +45,7 @@ export default function Login() {
           placeholder="Enter your password..."
           ref={passwordRef}
         />
+        {error && (<p>Provide valid credential</p>)}
         <button
           className="loginButton"
           type="submit"

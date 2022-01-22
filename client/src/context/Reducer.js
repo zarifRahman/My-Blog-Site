@@ -7,6 +7,7 @@ const Reducer = (state, action) => {
         error: false,
       };
     case "LOGIN_SUCCESS":
+    // when login is success we will use the response data and update our state
       return {
         user: action.payload,
         isFetching: false,

@@ -8,6 +8,7 @@ export default function Topbar() {
   // const user = false;
   const { user, dispatch } = useContext(Context);
   const handleLogout = () => {
+    // This dispatch makes the user null from local storage which logout the user
     dispatch({ type: "LOGOUT" })
   }
   return (

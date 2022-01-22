@@ -11,6 +11,8 @@ const INITIAL_STATE = {
 export const Context = createContext(INITIAL_STATE);
 
 export const ContextProvider = ({ children }) => {
+  // useReducer takes two params-- our reducer func and initial state
+  
   const [state, dispatch] = useReducer(Reducer, INITIAL_STATE);
 
   useEffect(() => {
