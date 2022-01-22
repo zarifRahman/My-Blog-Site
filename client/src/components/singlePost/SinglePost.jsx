@@ -26,19 +26,20 @@ export default function SinglePost() {
       setTitle(res.data.title);
       setDesc(res.data.desc);
     };
-    console.log("---", user.username);
     getPost();
   }, [path]);
 
   const handleDelete = async () => {
     try {
+      console.log({data:{user:user.username}});
       // delete with post ID
       await axios.delete(`/posts/` + path,
-        { data: { username: user.username } }
+      // always check payload object
+        {data:{username:user.username}}
       );
       window.location.replace("/");
     } catch (err) {
-
+      console.log(err);
     }
   }
   const handleUpdate = async () => {
@@ -59,7 +60,7 @@ export default function SinglePost() {
         {post.photo && (
           <img
             className="singlePostImg"
-            src={pf + post.photo}
+            src={`${pf}${post.photo}`}
             alt=""
           />
         )}

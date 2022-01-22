@@ -7,7 +7,7 @@ export default function Post({ post }) {
   return (
     // render post
     <div className="post">
-      {post.photo && (
+      {post?.photo && (
         <img
           className="postImg"
           src={pf + post.photo}
