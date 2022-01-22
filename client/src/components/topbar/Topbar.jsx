@@ -7,6 +7,9 @@ import { Context } from "../../context/Context";
 export default function Topbar() {
   // const user = false;
   const { user, dispatch } = useContext(Context);
+  
+  const PF = "http://localhost:5000/images/";
+
   const handleLogout = () => {
     // This dispatch makes the user null from local storage which logout the user
     dispatch({ type: "LOGOUT" })
@@ -41,7 +44,7 @@ export default function Topbar() {
           <Link className="link" to="/settings">
             <img
               className="topImg"
-              src={user.profilePic}
+              src={PF+user.profilePic}
               alt=""
             />
           </Link>

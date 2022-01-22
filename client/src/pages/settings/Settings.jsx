@@ -5,18 +5,21 @@ import { useContext, useState } from "react";
 import axios from "axios";
 
 export default function Settings() {
-  const { user } = useContext(Context);
-  const [file, setFile] = useState("");
+  const { user, dispatch } = useContext(Context);
+  const [file, setFile] = useState(null);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [success,setSuccess] = useState(false);
+
+  const PF = "http://localhost:5000/images/";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const updatedUser = {
       username: user._id,
       email,
-      password
+      password,
     };
     if (file) {
       const data = new FormData();
@@ -25,15 +28,18 @@ export default function Settings() {
       data.append("file", file);
       updatedUser.profilePic = filename;
       try {
-        await axios.post("/upload", data)
+        await axios.post("/upload", data);
       } catch (err) {
-
+        console.log(err);
       }
     }
     try {
-      axios.put("/users" + user._id, updatedUser);
+      // user id is required from backend
+      const res = await axios.put("/users/" + user._id, updatedUser);
+      setSuccess(true);
+      dispatch({type: "UPDATE_SUCCESS", payload: res.data})
     } catch (err) {
-
+      dispatch({ type: "UPDATE_FAILURE" })
     }
   }
   return (
@@ -47,7 +53,7 @@ export default function Settings() {
           <label>Profile Picture</label>
           <div className="settingsPP">
             <img
-              src={user.profilePic}
+              src={file ? URL.createObjectURL(file) : PF+user.profilePic}
               alt=""
             />
             <label htmlFor="fileInput">
@@ -76,6 +82,7 @@ export default function Settings() {
             Update
           </button>
         </form>
+        {success && (<p>Profile has been updated</p>)}
       </div>
       <Sidebar />
     </div>
