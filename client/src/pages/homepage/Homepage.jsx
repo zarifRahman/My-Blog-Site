@@ -7,14 +7,17 @@ import "./homepage.css";
 import axios from "axios";
 
 export default function Homepage() {
+  // finds ?user=zarif
   const { search } = useLocation();
   // state decleration
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
+    // fetch post
     const fetchPosts = async () => {
       const res = await axios.get('/posts' + search);
       setPosts(res.data);
+      console.log('====',res.data);
     }
     fetchPosts();
   }, [search])

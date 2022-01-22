@@ -5,6 +5,7 @@ export default function Post({ post }) {
   const pf = "http://localhost:5000/images/";
   console.log("post--", pf + post.photo)
   return (
+    // render post
     <div className="post">
       {post.photo && (
         <img
@@ -19,6 +20,7 @@ export default function Post({ post }) {
             <span className="postCat">{c.name}</span>
           ))}
         </div>
+        {/* Will go to single page */}
         <Link to={`/post/${post._id}`} className="link">
           <span className="postTitle">
             {post.title}

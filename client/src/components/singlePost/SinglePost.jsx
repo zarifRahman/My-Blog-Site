@@ -5,8 +5,9 @@ import axios from "axios";
 import { Context } from '../../context/Context';
 
 export default function SinglePost() {
+  // Fetch data using ID
   const location = useLocation();
-  // take out the Id from path
+  // take out the Id from pathname
   const path = location.pathname.split('/')[2];
   const [post, setPost] = useState({});
   const pf = "http://localhost:5000/images/";
@@ -18,7 +19,9 @@ export default function SinglePost() {
 
   useEffect(() => {
     const getPost = async () => {
+      // Request Data using ID
       const res = await axios.get("/posts/" + path);
+      // Update
       setPost(res.data);
       setTitle(res.data.title);
       setDesc(res.data.desc);
@@ -83,7 +86,7 @@ export default function SinglePost() {
           <span>
             Author:
             <b className="singlePostAuthor">
-              <Link className="link" to={`?user=${post.username}`}>
+              <Link className="link" to={`/?user=${post.username}`}>
                 {post.username}
               </Link>
             </b>
