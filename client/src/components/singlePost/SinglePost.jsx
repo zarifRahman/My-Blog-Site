@@ -14,6 +14,7 @@ export default function SinglePost() {
   const { user } = useContext(Context);
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
+  const [updatedAt, setUpdatedAt] = useState("");
   const [updateMode, setUpdateMode] = useState(false);
 
 
@@ -25,6 +26,7 @@ export default function SinglePost() {
       setPost(res.data);
       setTitle(res.data.title);
       setDesc(res.data.desc);
+      setUpdatedAt(res.data.updatedAt);
     };
     getPost();
   }, [path]);
@@ -45,11 +47,13 @@ export default function SinglePost() {
   const handleUpdate = async () => {
     try {
       await axios.put(`/posts/${post._id}`, {
+        // How it works
         username: user.username,
-        title,
-        desc,
+        title: title,
+        desc: desc,
       });
-      setUpdateMode(false)
+      // setUpdateMode(false);
+      window.location.reload();
     } catch (err) {
       console.error(err)
     }

@@ -15,8 +15,11 @@ export default function Settings() {
   const PF = "http://localhost:5000/images/";
 
   const handleSubmit = async (e) => {
+    dispatch({ type: "UPDATE_START"})
     e.preventDefault();
     const updatedUser = {
+      // How it works
+      userId:user._id,
       username: user._id,
       email,
       password,
@@ -39,7 +42,7 @@ export default function Settings() {
       setSuccess(true);
       dispatch({type: "UPDATE_SUCCESS", payload: res.data})
     } catch (err) {
-      dispatch({ type: "UPDATE_FAILURE" })
+      dispatch({ type: "UPDATE_FAILURE" });
     }
   }
   return (
